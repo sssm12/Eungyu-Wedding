@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mony's first 2d Game</title>
+  <link href="styles.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+  <div class="game-container">
+    <canvas class="game-canvas" width="400" height="720"></canvas>
+  </div>
+  <div id="joystick-container">
+    <div id="joystick">
+      <div class="arrow" id="up"></div>
+      <div class="arrow" id="left"></div>
+      <div class="arrow" id="down"></div>
+      <div class="arrow" id="right"></div>
+      <div id="cursor"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+
+  <script src="utils.js"></script>   
+  <script src="DirectionInput.js"></script>
+  <script src="Overworld.js"></script>
+  <script src="GameObject.js"></script>
+  <script src="Person.js"></script>
+  <script src="Sprite.js"></script>
+  <script src="OverworldMap.js"></script>
+  <script src="init.js"></script>
+</body>
+</html>
