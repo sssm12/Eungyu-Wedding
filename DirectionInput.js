@@ -18,6 +18,13 @@ class DirectionInput {
      document.addEventListener("touchstart", e => this.handleTouchStart(e));
      document.addEventListener("touchmove", e => this.handleTouchMove(e));
      document.addEventListener("touchend", () => this.handleTouchEnd());
+
+     // Prevent zooming and dragging by adding event listeners to the document
+      document.addEventListener("touchmove", e => e.preventDefault(), { passive: false });
+      document.addEventListener("gesturestart", e => e.preventDefault());
+
+      // Prevent context menu on long press
+      document.addEventListener("contextmenu", e => e.preventDefault());
   }
 
   get direction() {
