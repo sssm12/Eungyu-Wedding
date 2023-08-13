@@ -35,8 +35,8 @@ body {
 }
 
 #joystick {
-  width: 180px; /* Adjust the width */
-  height: 180px; /* Adjust the height */
+  width: 220px; /* Increase the width */
+  height: 220px; /* Increase the height */
   background-color: lightgray;
   border-radius: 50%;
   position: relative;
@@ -46,7 +46,6 @@ body {
   user-select: none;
 }
 
-
 .arrow {
   position: absolute;
   width: 0;
@@ -55,29 +54,28 @@ body {
   transform-origin: center;
 }
 
-
 #up {
   top: 0;
-  border-width: 0 15px 30px 15px; /* Adjust the border-width */
+  border-width: 0 20px 40px 20px; /* Adjust the border-width */
   border-color: transparent transparent gray transparent;
 }
 
 #left {
   top: 45%;
   left: 0;
-  border-width: 15px 30px 15px 0; /* Adjust the border-width */
+  border-width: 20px 40px 20px 0; /* Adjust the border-width */
   border-color: transparent gray transparent transparent;
 }
 
 #down {
   bottom: 0;
-  border-width: 30px 15px 0 15px; /* Adjust the border-width */
+  border-width: 40px 20px 0 20px; /* Adjust the border-width */
   border-color: gray transparent transparent transparent;
 }
 
 #right {
   top: 45%;
   right: 0;
-  border-width: 15px 0 15px 30px; /* Adjust the border-width */
+  border-width: 20px 0 20px 40px; /* Adjust the border-width */
   border-color: transparent transparent transparent gray;
 }
