@@ -14,17 +14,31 @@ class DirectionInput {
       "KeyD": "right",
     }
 
-     // Add touch event listeners
-     document.addEventListener("touchstart", e => this.handleTouchStart(e));
-     document.addEventListener("touchmove", e => this.handleTouchMove(e));
-     document.addEventListener("touchend", () => this.handleTouchEnd());
+    // Add the close button reference
+    this.closeTextButton = document.querySelector('.close-button'); // Adjust the selector as needed
+    // Add a click event listener to the close button
+    this.closeTextButton.addEventListener('click', () => {
+    this.handlecloseTextButtonClick();
+    });
+    // Add a touchstart event listener to the close button for mobile devices
+    this.closeButton.addEventListener('touchstart', (event) => {
+      event.preventDefault(); // Prevent the default touch behavior
+      this.handleCloseButtonClick();
+    });
+
+
+
+    // Add touch event listeners
+    document.addEventListener("touchstart", e => this.handleTouchStart(e));
+    document.addEventListener("touchmove", e => this.handleTouchMove(e));
+    document.addEventListener("touchend", () => this.handleTouchEnd());
 
      // Prevent zooming and dragging by adding event listeners to the document
-      document.addEventListener("touchmove", e => e.preventDefault(), { passive: false });
-      document.addEventListener("gesturestart", e => e.preventDefault());
+    document.addEventListener("touchmove", e => e.preventDefault(), { passive: false });
+    document.addEventListener("gesturestart", e => e.preventDefault());
 
-      // Prevent context menu on long press
-      document.addEventListener("contextmenu", e => e.preventDefault());
+    // Prevent context menu on long press
+    document.addEventListener("contextmenu", e => e.preventDefault());
   }
 
   get direction() {
@@ -54,6 +68,13 @@ class DirectionInput {
 
   handleTouchEnd() {
     this.heldDirections = []; // Clear the heldDirections array when touch is released
+  }
+
+  // Method to handle the close button click
+  handlecloseTextButtonClick() {
+    // Hide the entire info-box when the close button is clicked
+    const infoBox = document.querySelector('.info-box');
+    infoBox.style.display = 'none';
   }
 
   init() {

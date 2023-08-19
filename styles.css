@@ -79,3 +79,48 @@ body {
   border-width: 20px 0 20px 40px; /* Adjust the border-width */
   border-color: transparent transparent transparent gray;
 }
+/* Add these styles to your existing CSS or styles.css file */
+
+.info-box {
+  position: relative; /* Add this for positioning the exit button */
+  width: 100%;
+  bottom: -550px;
+  height: 370px; 
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.info-header{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 3%; /* Adjust the margins (top and bottom, left and right) */
+  margin-right: 3%;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.info-header .title {
+  font-size: 25px;
+  
+}
+
+.info-header .close-button {
+  cursor: pointer; 
+  border: none; 
+  outline: none;
+  background: none;
+  font-size: 2.5em; 
+  font-weight: bold;
+
+}
+
+.info-text {
+  font-size: 25px; /* Adjust the text size */
+  margin-bottom: 5px; /* Adjust the margin between paragraphs */
+  margin-left: 3%; /* Adjust the margins (top and bottom, left and right) */
+  margin-right: 3%;
+}
