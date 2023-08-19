@@ -21,9 +21,10 @@ class DirectionInput {
     this.handlecloseTextButtonClick();
     });
     // Add a touchstart event listener to the close button for mobile devices
-    this.closeButton.addEventListener('touchstart', (event) => {
+    this.closeTextButton.addEventListener('touchstart', (event) => {
       event.preventDefault(); // Prevent the default touch behavior
-      this.handleCloseButtonClick();
+      this.handlecloseTextButtonClick();
+
     });
 
 

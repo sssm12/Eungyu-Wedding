@@ -19,26 +19,6 @@ class Person extends GameObject {
     this.touchPosition = { x: 0, y: 0 };
   }
 
-
-
-  // update(state) {
-  //   if (this.movingProgressRemaining > 0) {
-  //     this.updatePosition();
-  //   } else {
-  //     if (this.isPlayerControlled) {
-  //       // Use directionInput.direction as the direction
-  //       const direction = directionInput.direction;
-  //       if (direction) {
-  //         this.startBehavior(state, {
-  //           type: "walk",
-  //           direction: direction,
-  //         });
-  //       }
-  //     }
-
-  //     this.updateSprite(state);
-  //   }
-  // }
   update(state) {
     if (this.movingProgressRemaining > 0) {
       this.updatePosition();
@@ -62,22 +42,10 @@ class Person extends GameObject {
           direction: touchDirection,
         });
       }
-      
       this.updateSprite(state);
     }
   }
 
-  // startBehavior(state, behavior) {
-  //   // Set character direction to whatever behavior has
-  //   this.direction = behavior.direction;
-  //   if (behavior.type === "walk") {
-  //     // Stop here if space is not free
-  //     if (this.isSpaceTaken(this.direction)) {
-  //       return;
-  //     }
-  //     this.movingProgressRemaining = 16;
-  //   }
-  // }
 
   startBehavior(state, behavior) {
     // Set character direction to whatever behavior has
@@ -96,15 +64,6 @@ class Person extends GameObject {
     this[property] += change;
     this.movingProgressRemaining -= 1;
   }
-
-
-  // updateSprite() {
-  //   if (this.movingProgressRemaining > 0) {
-  //     this.sprite.setAnimation("walk-" + this.direction);
-  //   } else {
-  //     this.sprite.setAnimation("idle-" + this.direction);
-  //   }
-  // }
 
   updateSprite() {
     if (this.movingProgressRemaining > 0) {

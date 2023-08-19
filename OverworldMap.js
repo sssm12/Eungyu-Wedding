@@ -43,6 +43,7 @@ Room1: {
                 y: utils.withGrid(15),
               }),         
     },
+
     walls: {
       //Picture border (left)
       [utils.asGridCoords(-1,10)] : true,
