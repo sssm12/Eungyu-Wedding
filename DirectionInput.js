@@ -15,7 +15,8 @@ class DirectionInput {
     }
 
     // Add the close button reference
-    this.closeTextButton = document.querySelector('.close-button'); // Adjust the selector as needed
+    this.closeTextButton = document.querySelector('#info-box .close-button'); // Updated selector
+    
     // Add a click event listener to the close button
     this.closeTextButton.addEventListener('click', () => {
     this.handlecloseTextButtonClick();
@@ -71,12 +72,12 @@ class DirectionInput {
     this.heldDirections = []; // Clear the heldDirections array when touch is released
   }
 
-  // Method to handle the close button click
   handlecloseTextButtonClick() {
     // Hide the entire info-box when the close button is clicked
-    const infoBox = document.querySelector('.info-box');
+    const infoBox = document.querySelector('#info-box');
     infoBox.style.display = 'none';
   }
+  
 
   init() {
     document.addEventListener("keydown", e => {
@@ -93,6 +94,11 @@ class DirectionInput {
         this.heldDirections.splice(index, 1);
       }
     });
+     // Add a click event listener to the close button globally
+     const closeTextButton = document.querySelector('#info-box .close-button');
+     closeTextButton.addEventListener('click', () => {
+       this.handlecloseTextButtonClick();
+     });
   }
 }
 const directionInput = new DirectionInput();
