@@ -1,8 +1,10 @@
 class Person extends GameObject {
-  constructor(config) {
+  constructor(config, directionInput) {
+
     super(config);
 
     this.movingProgressRemaining = 0;
+    this.isInfoBoxOpen = false; // Add this property
 
     this.isPlayerControlled = config.isPlayerControlled || false;
 
@@ -12,6 +14,8 @@ class Person extends GameObject {
       "left": ["x", -1],
       "right": ["x", 1],
     };
+
+    this.directionInput = directionInput; // Store the directionInput instance
 
     this.walls = config.walls || {}; // Add walls property and initialize it with the walls object
 
@@ -26,11 +30,25 @@ class Person extends GameObject {
       // More cases for starting to walk will come here
       // ...
                   // Check if the character has moved to a specific position
-      if (this.x === 15 * 16 && this.y === 15 * 16)  {
-        this.showText("장소 안내", "결혼식은 신라호텔에서 진행합니다.");
+      // if (this.x === 5 * 16 && this.y === 15 * 16)  {
+      //   this.showText("장소 안내", "결혼식은 신라호텔에서 진행합니다.");
+      //  // console.log("Reached specific position 1");
+      // }
 
-       // console.log("Reached specific position 1");
+      if (this.x === 5 * 16 && this.y === 15 * 16 && !this.isInfoBoxOpen) {
+        this.showText("장소 안내", "결혼식은 신라호텔에서 진행합니다.");
+        this.isInfoBoxOpen = true;
       }
+      
+      // Check if the character has moved away from the position, then allow reopening the info box
+      if ((this.x !== 5 * 16 || this.y !== 15 * 16) && this.isInfoBoxOpen) {
+        this.isInfoBoxOpen = false;
+      }
+
+      // if (this.x === 5 * 16 && this.y === 15 * 16 && !this.isInfoBoxOpen) {
+      //   this.showText("장소 안내", "결혼식은 신라호텔에서 진행합니다.");
+      // }
+
       // } else if (utils.asGridCoords(10, 16)) {
       //   console.log("Reached specific position 2");
       //   this.showText("Text message for specific position 2");
@@ -71,11 +89,24 @@ class Person extends GameObject {
     const infoBox = document.querySelector('#info-box');
     const infoTitle = infoBox.querySelector('.title');
     const infoText = infoBox.querySelector('.info-text');
+    // Add a click event listener to the close button
+    const closeTextButton = infoBox.querySelector('.close-button');
   
     // Display the info-box with the provided title and text
     infoTitle.textContent = title;
     infoText.textContent = text; 
-    // infoBox.style.display = 'block';
+    infoBox.style.display = 'block';
+    this.isInfoBoxOpen = true;
+
+    // closeTextButton.addEventListener('touchstart', () => {
+    //   directionInput.handlecloseTextButtonClick();
+    // });
+
+    
+    // closeTextButton.addEventListener('click', () => {
+    // directionInput.handleCloseTextButtonClick(infoBox);
+    // });
+    
   }
   
 
