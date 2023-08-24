@@ -14,17 +14,33 @@ class DirectionInput {
       "KeyD": "right",
     }
 
-     // Add touch event listeners
-     document.addEventListener("touchstart", e => this.handleTouchStart(e));
-     document.addEventListener("touchmove", e => this.handleTouchMove(e));
-     document.addEventListener("touchend", () => this.handleTouchEnd());
+    // Add the close button reference
+    this.closeTextButton = document.querySelector('#info-box .close-button'); // Updated selector
+    
+    // Add a click event listener to the close button
+    this.closeTextButton.addEventListener('click', () => {
+    this.handlecloseTextButtonClick();
+    });
+    // Add a touchstart event listener to the close button for mobile devices
+    this.closeTextButton.addEventListener('touchstart', (event) => {
+      event.preventDefault(); // Prevent the default touch behavior
+      this.handlecloseTextButtonClick();
+
+    });
+
+
+
+    // Add touch event listeners
+    document.addEventListener("touchstart", e => this.handleTouchStart(e));
+    document.addEventListener("touchmove", e => this.handleTouchMove(e));
+    document.addEventListener("touchend", () => this.handleTouchEnd());
 
      // Prevent zooming and dragging by adding event listeners to the document
-      document.addEventListener("touchmove", e => e.preventDefault(), { passive: false });
-      document.addEventListener("gesturestart", e => e.preventDefault());
+    document.addEventListener("touchmove", e => e.preventDefault(), { passive: false });
+    document.addEventListener("gesturestart", e => e.preventDefault());
 
-      // Prevent context menu on long press
-      document.addEventListener("contextmenu", e => e.preventDefault());
+    // Prevent context menu on long press
+    document.addEventListener("contextmenu", e => e.preventDefault());
   }
 
   get direction() {
@@ -56,6 +72,13 @@ class DirectionInput {
     this.heldDirections = []; // Clear the heldDirections array when touch is released
   }
 
+  handlecloseTextButtonClick() {
+    // Hide the entire info-box when the close button is clicked
+    const infoBox = document.querySelector('#info-box');
+    infoBox.style.display = 'none';
+  }
+  
+
   init() {
     document.addEventListener("keydown", e => {
       const dir = this.map[e.code];
@@ -71,6 +94,11 @@ class DirectionInput {
         this.heldDirections.splice(index, 1);
       }
     });
+     // Add a click event listener to the close button globally
+     const closeTextButton = document.querySelector('#info-box .close-button');
+     closeTextButton.addEventListener('click', () => {
+       this.handlecloseTextButtonClick();
+     });
   }
 }
 const directionInput = new DirectionInput();

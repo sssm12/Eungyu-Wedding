@@ -1,8 +1,10 @@
 class Person extends GameObject {
-  constructor(config) {
+  constructor(config, directionInput) {
+
     super(config);
 
     this.movingProgressRemaining = 0;
+    this.isInfoBoxOpen = false; // Add this property
 
     this.isPlayerControlled = config.isPlayerControlled || false;
 
@@ -13,38 +15,51 @@ class Person extends GameObject {
       "right": ["x", 1],
     };
 
+    this.directionInput = directionInput; // Store the directionInput instance
+
     this.walls = config.walls || {}; // Add walls property and initialize it with the walls object
 
     // Add touch position property
     this.touchPosition = { x: 0, y: 0 };
   }
 
-
-
-  // update(state) {
-  //   if (this.movingProgressRemaining > 0) {
-  //     this.updatePosition();
-  //   } else {
-  //     if (this.isPlayerControlled) {
-  //       // Use directionInput.direction as the direction
-  //       const direction = directionInput.direction;
-  //       if (direction) {
-  //         this.startBehavior(state, {
-  //           type: "walk",
-  //           direction: direction,
-  //         });
-  //       }
-  //     }
-
-  //     this.updateSprite(state);
-  //   }
-  // }
   update(state) {
     if (this.movingProgressRemaining > 0) {
       this.updatePosition();
     } else {
       // More cases for starting to walk will come here
       // ...
+                  // Check if the character has moved to a specific position
+      // if (this.x === 5 * 16 && this.y === 15 * 16)  {
+      //   this.showText("장소 안내", "결혼식은 신라호텔에서 진행합니다.");
+      //  // console.log("Reached specific position 1");
+      // }
+
+      if (this.x === 5 * 16 && this.y === 15 * 16 && !this.isInfoBoxOpen) {
+        this.showText("장소 안내", "결혼식은 신라호텔에서 진행합니다.");
+        this.isInfoBoxOpen = true;
+      }
+      
+      // Check if the character has moved away from the position, then allow reopening the info box
+      if ((this.x !== 5 * 16 || this.y !== 15 * 16) && this.isInfoBoxOpen) {
+        this.isInfoBoxOpen = false;
+      }
+
+      // if (this.x === 5 * 16 && this.y === 15 * 16 && !this.isInfoBoxOpen) {
+      //   this.showText("장소 안내", "결혼식은 신라호텔에서 진행합니다.");
+      // }
+
+      // } else if (utils.asGridCoords(10, 16)) {
+      //   console.log("Reached specific position 2");
+      //   this.showText("Text message for specific position 2");
+      // } else if (this.x === 13*16 && this.y === 13*16) {
+      //   console.log("Reached specific position 3");
+      //   this.showText("Text message for specific position 3");
+      // }else{
+      //   console.log("Reached specific position 4");
+      //   this.showText("Text message for specific position 4");
+
+      // }
 
       // Case: We're keyboard ready and have an arrow pressed
       if (this.isPlayerControlled && state.arrow) {
@@ -62,22 +77,38 @@ class Person extends GameObject {
           direction: touchDirection,
         });
       }
+
       
       this.updateSprite(state);
     }
+
   }
 
-  // startBehavior(state, behavior) {
-  //   // Set character direction to whatever behavior has
-  //   this.direction = behavior.direction;
-  //   if (behavior.type === "walk") {
-  //     // Stop here if space is not free
-  //     if (this.isSpaceTaken(this.direction)) {
-  //       return;
-  //     }
-  //     this.movingProgressRemaining = 16;
-  //   }
-  // }
+
+  showText(title, text) {
+    const infoBox = document.querySelector('#info-box');
+    const infoTitle = infoBox.querySelector('.title');
+    const infoText = infoBox.querySelector('.info-text');
+    // Add a click event listener to the close button
+    const closeTextButton = infoBox.querySelector('.close-button');
+  
+    // Display the info-box with the provided title and text
+    infoTitle.textContent = title;
+    infoText.textContent = text; 
+    infoBox.style.display = 'block';
+    this.isInfoBoxOpen = true;
+
+    // closeTextButton.addEventListener('touchstart', () => {
+    //   directionInput.handlecloseTextButtonClick();
+    // });
+
+    
+    // closeTextButton.addEventListener('click', () => {
+    // directionInput.handleCloseTextButtonClick(infoBox);
+    // });
+    
+  }
+  
 
   startBehavior(state, behavior) {
     // Set character direction to whatever behavior has
@@ -96,15 +127,6 @@ class Person extends GameObject {
     this[property] += change;
     this.movingProgressRemaining -= 1;
   }
-
-
-  // updateSprite() {
-  //   if (this.movingProgressRemaining > 0) {
-  //     this.sprite.setAnimation("walk-" + this.direction);
-  //   } else {
-  //     this.sprite.setAnimation("idle-" + this.direction);
-  //   }
-  // }
 
   updateSprite() {
     if (this.movingProgressRemaining > 0) {
