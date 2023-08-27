@@ -14,6 +14,14 @@ class DirectionInput {
       "KeyD": "right",
     }
 
+    this.prevButton = document.getElementById("prev-slide");
+    this.nextButton = document.getElementById("next-slide");
+    this.closeButton = document.getElementById("close-slide");
+
+
+
+    this.init();
+
     // Add the close button reference
     this.closeTextButton = document.querySelector('#info-box .close-button'); // Updated selector
     
@@ -77,9 +85,73 @@ class DirectionInput {
     const infoBox = document.querySelector('#info-box');
     infoBox.style.display = 'none';
   }
+
+  handleNavClick(direction) {
+    const slideshowImages = document.querySelectorAll(".slideshow-image");
+    let currentSlideIndex = Array.from(slideshowImages).findIndex(image => image.classList.contains("active"));
+
+    if (direction === "prev") {
+      currentSlideIndex = (currentSlideIndex - 1 + slideshowImages.length) % slideshowImages.length;
+    } else if (direction === "next") {
+      currentSlideIndex = (currentSlideIndex + 1) % slideshowImages.length;
+    }
+
+    slideshowImages.forEach((image, idx) => {
+      if (idx === currentSlideIndex) {
+        image.classList.add("active");
+      } else {
+        image.classList.remove("active");
+      }
+    });
+  }
+
+
+  handleCloseClick() {
+    const slideshow = document.querySelector('#photo-slideshow');
+    slideshow.style.display = "none";
+    
+    // Hide individual photos
+    const photos = slideshow.querySelectorAll('.slideshow-image');
+    photos.forEach(photo => {
+      photo.style.display = "none";
+    });
+    
+    // Hide navigation buttons (prev and next)
+    const prevButton = slideshow.querySelector('.slideshow-nav.prev');
+    const nextButton = slideshow.querySelector('.slideshow-nav.next');
+    prevButton.style.display = "none";
+    nextButton.style.display = "none";
+    
+    // Hide the close button
+    const closeButton = slideshow.querySelector('.slideshow-close');
+    closeButton.style.display = "none";
+  }
+  
   
 
   init() {
+    this.prevButton.addEventListener("click", () => this.handleNavClick("prev"));
+    this.nextButton.addEventListener("click", () => this.handleNavClick("next"));
+    this.closeButton.addEventListener("click", () => this.handleCloseClick());
+
+    this.prevButton.addEventListener("touchstart", () => this.handleNavClick("prev"));
+    this.nextButton.addEventListener("touchstart", () => this.handleNavClick("next"));
+    this.closeButton.addEventListener("touchstart", () => this.handleCloseClick());
+    //  // Add touch event listeners for slideshow navigation buttons
+    // const prevSlideButton = document.querySelector('.slideshow-nav.prev');
+    // const nextSlideButton = document.querySelector('.slideshow-nav.next');
+
+    // prevSlideButton.addEventListener('click', () => this.handleNavClick("prev"));
+    // nextSlideButton.addEventListener('click', () => this.handleNavClick("next"));
+
+    // prevSlideButton.addEventListener('touchstart', () => this.handleNavClick("prev"));
+    // nextSlideButton.addEventListener('touchstart', () => this.handleNavClick("next"));
+
+    // // Add touch event listener for the close button
+    // const closeSlideButton = document.querySelector('.slideshow-close');
+    // closeSlideButton.addEventListener('click', () => this.handleCloseClick());
+    // closeSlideButton.addEventListener('touchstart', () => this.handleCloseClick());
+
     document.addEventListener("keydown", e => {
       const dir = this.map[e.code];
       if (dir && this.heldDirections.indexOf(dir) === -1) {
@@ -94,6 +166,7 @@ class DirectionInput {
         this.heldDirections.splice(index, 1);
       }
     });
+
      // Add a click event listener to the close button globally
      const closeTextButton = document.querySelector('#info-box .close-button');
      closeTextButton.addEventListener('click', () => {
@@ -101,5 +174,6 @@ class DirectionInput {
      });
   }
 }
+
 const directionInput = new DirectionInput();
 directionInput.init();

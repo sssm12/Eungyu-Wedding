@@ -124,3 +124,54 @@ body {
   margin-left: 3%; /* Adjust the margins (top and bottom, left and right) */
   margin-right: 3%;
 }
+
+/* Add styles for the photo slideshow */
+/* Add styles for the photo slideshow */
+.photo-slideshow {
+  position: absolute;
+  top: 192px; /* Correct calculation: 12 * 16px */
+  left: 0px; /* Correct calculation: 10 * 16px */
+  display: none;
+  z-index: 10; /* Ensure the slideshow appears on top */
+}
+
+.slideshow-image {
+  max-width: 100%;
+  height: auto;
+  display: none;
+}
+
+.slideshow-image.active {
+  display: block;
+}
+
+/* New styles for navigation arrows and close button */
+.slideshow-nav,
+.slideshow-close {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: black;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.slideshow-nav.prev {
+  left: 10px;
+}
+
+.slideshow-nav.next {
+  right: 10px;
+}
+
+.slideshow-close {
+  top: 15px;
+  right: 10px;
+  font-size: 46px;
+  background-color: transparent;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
