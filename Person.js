@@ -31,12 +31,15 @@ class Person extends GameObject {
       // More cases for starting to walk will come here
       // ...
 
-      if (this.x === 12 * 16 && this.y === 9* 16) {
-        this.showPhotoSlideshow();
-      } else {
-        this.hidePhotoSlideshow();
+      // if (this.x === 12 * 16 && this.y === 9* 16) {
+      //   this.showPhotoSlideshow();
+      // } else {
+      //   this.hidePhotoSlideshow();
         
-      }
+      // }
+      if (this.x === 12 * 16 && this.y === 9 * 16) {
+    this.directionInput.handleNavClick("next");
+  }
 
       if (this.x === 5 * 16 && this.y === 15 * 16 && !this.isInfoBoxOpen) {
         this.showText("장소 안내", "결혼식은 신라호텔에서 진행합니다.");
