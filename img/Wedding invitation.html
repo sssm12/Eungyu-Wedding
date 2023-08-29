@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)file:///Users/ssm12/Eungyu-Wedding/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Wedding invitation</title>
+  <link href="./Wedding invitation_files/styles.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+  <div class="game-container">
+    <canvas class="game-canvas" width="400" height="720"></canvas>
+  </div>
+  <div id="joystick-container">
+    <div id="joystick">
+      <div class="arrow" id="up"></div>
+      <div class="arrow" id="left"></div>
+      <div class="arrow" id="down"></div>
+      <div class="arrow" id="right"></div>
+      <div id="cursor"></div>
+    </div>
+  </div>
+
+
+  <!-- Add text and exit button at the bottom -->
+  <div class="info-box" id="info-box">
+    <!-- Add the exit button/icon -->
+    <div class="info-header">
+      <div class="title">안녕하세요!</div>
+      <button class="close-button">×</button>
+    </div>
+    <div class="info-text">
+      <p> 저희는 은규와 은관입니다.</p>
+      <p> 저희 결혼식에 여러분을 초대합니다.</p>
+      <p> 캐릭터를 집, 결혼식 배너, 데이트 배너, 그림 배너, 그리고 고양이와 같은 장소로 이동해보세요!</p>
+    </div> 
+  </div>
+
+
+    <!-- Add the photo slideshow container -->
+  <div class="photo-slideshow" id="photo-slideshow" style="display: none;">
+    <button class="slideshow-nav prev" id="prev-slide">&lt;</button>
+    <img src="./Wedding invitation_files/pic1.jpeg" class="slideshow-image active" style="display: none;">
+    <img src="./Wedding invitation_files/pic2.jpeg" class="slideshow-image" style="display: none;">
+    <img src="./Wedding invitation_files/pic3.jpeg" class="slideshow-image" style="display: none;">
+    <img src="./Wedding invitation_files/pic4.jpeg" class="slideshow-image" style="display: none;">
+    <img src="./Wedding invitation_files/pic5.jpeg" class="slideshow-image" style="display: none;">
+    <img src="./Wedding invitation_files/pic6.jpeg" class="slideshow-image" style="display: none;">
+    <button class="slideshow-nav next" id="next-slide">&gt;</button>
+    <button class="slideshow-close" id="close-slide">×</button>
+
+  </div>
+
+
+
+  <!-- Scripts -->
+
+  <script src="./Wedding invitation_files/utils.js"></script>   
+  <script src="./Wedding invitation_files/DirectionInput.js"></script>
+  <script src="./Wedding invitation_files/Overworld.js"></script>
+  <script src="./Wedding invitation_files/GameObject.js"></script>
+  <script src="./Wedding invitation_files/Person.js"></script>
+  <script src="./Wedding invitation_files/Sprite.js"></script>
+  <script src="./Wedding invitation_files/OverworldMap.js"></script>
+  <script src="./Wedding invitation_files/init.js"></script>
+
+
+
+</body></html>
