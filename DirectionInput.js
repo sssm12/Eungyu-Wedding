@@ -14,13 +14,8 @@ class DirectionInput {
       "KeyD": "right",
     }
 
-    this.prevButton = document.getElementById("prev-slide");
-    this.nextButton = document.getElementById("next-slide");
-    this.closeButton = document.getElementById("close-slide");
-
-
-
     this.init();
+    this.currentIndex = 0;
 
     // Add the close button reference
     this.closeTextButton = document.querySelector('#info-box .close-button'); // Updated selector
@@ -37,7 +32,6 @@ class DirectionInput {
     });
 
 
-
     // Add touch event listeners
     document.addEventListener("touchstart", e => this.handleTouchStart(e));
     document.addEventListener("touchmove", e => this.handleTouchMove(e));
@@ -49,6 +43,18 @@ class DirectionInput {
 
     // Prevent context menu on long press
     document.addEventListener("contextmenu", e => e.preventDefault());
+
+
+    // Add references to carousel elements
+    this.prevButton = document.querySelector('#prev-button');
+    this.nextButton = document.querySelector('#next-button');
+    // this.closeButton = document.querySelector('#close-button');
+    this.carouselContent = document.querySelector('.carousel-content');
+
+    // // Add click event listeners for carousel buttons
+    this.prevButton.addEventListener('click', () => this.updateSlide(this.currentIndex - 1));
+    this.nextButton.addEventListener('click', () => this.updateSlide(this.currentIndex + 1));
+    // this.closeButton.addEventListener('click', () => this.handleCloseButtonClick());
   }
 
   get direction() {
@@ -86,71 +92,58 @@ class DirectionInput {
     infoBox.style.display = 'none';
   }
 
-  handleNavClick(direction) {
-    const slideshowImages = document.querySelectorAll(".slideshow-image");
-    let currentSlideIndex = Array.from(slideshowImages).findIndex(image => image.classList.contains("active"));
+  handleCloseButtonClick() {
+    console.log("Close button clicked");
+  
+    const carousel = document.querySelector('.carousel');
+    carousel.style.display = 'none';
+  }
 
-    if (direction === "prev") {
-      currentSlideIndex = (currentSlideIndex - 1 + slideshowImages.length) % slideshowImages.length;
-    } else if (direction === "next") {
-      currentSlideIndex = (currentSlideIndex + 1) % slideshowImages.length;
-    }
 
-    slideshowImages.forEach((image, idx) => {
-      if (idx === currentSlideIndex) {
-        image.classList.add("active");
+  updateSlide(index) {
+    if (index >= 0 && index < 6) {
+      this.currentIndex = index;
+      console.log("currentIndex : ", this.currentIndex)
+      const translateX = -this.currentIndex * 100 + "%";
+      this.carouselContent.style.transform = `translateX(${translateX})`;
+  
+      // Update images based on the index
+      const imagePaths = [
+        "img/wedding-photos/pic1.jpeg",
+        "img/wedding-photos/pic2.jpeg",
+        "img/wedding-photos/pic3.jpeg",
+        "img/wedding-photos/pic4.jpeg",
+        "img/wedding-photos/pic5.jpeg",
+        // Add more image paths for pic3, pic4, etc.
+      ];
+      const nextIndex = (this.currentIndex + 1) % imagePaths.length;
+
+    // Create and set the image element
+    const imageElement = document.createElement("img");
+    imageElement.src = imagePaths[nextIndex];
+
+    // Clear previous content and add the new image
+    this.carouselContent.innerHTML = "";
+    this.carouselContent.appendChild(imageElement);
+
+    this.currentImageElement = imageElement; // Store the reference
+  }
+  const checkImagePathButton = document.querySelector('#check-image-path-button');
+    checkImagePathButton.addEventListener('click', () => {
+      if (this.currentImageElement) {
+        console.log("Current Image Path:", this.currentImageElement.src);
       } else {
-        image.classList.remove("active");
+        console.log("No current image element.");
       }
     });
+
   }
 
+    
+  
 
-  handleCloseClick() {
-    const slideshow = document.querySelector('#photo-slideshow');
-    slideshow.style.display = "none";
-    
-    // Hide individual photos
-    const photos = slideshow.querySelectorAll('.slideshow-image');
-    photos.forEach(photo => {
-      photo.style.display = "none";
-    });
-    
-    // Hide navigation buttons (prev and next)
-    const prevButton = slideshow.querySelector('.slideshow-nav.prev');
-    const nextButton = slideshow.querySelector('.slideshow-nav.next');
-    prevButton.style.display = "none";
-    nextButton.style.display = "none";
-    
-    // Hide the close button
-    const closeButton = slideshow.querySelector('.slideshow-close');
-    closeButton.style.display = "none";
-  }
-  
-  
 
   init() {
-    this.prevButton.addEventListener("click", () => this.handleNavClick("prev"));
-    this.nextButton.addEventListener("click", () => this.handleNavClick("next"));
-    this.closeButton.addEventListener("click", () => this.handleCloseClick());
-
-    this.prevButton.addEventListener("touchstart", () => this.handleNavClick("prev"));
-    this.nextButton.addEventListener("touchstart", () => this.handleNavClick("next"));
-    this.closeButton.addEventListener("touchstart", () => this.handleCloseClick());
-    //  // Add touch event listeners for slideshow navigation buttons
-    // const prevSlideButton = document.querySelector('.slideshow-nav.prev');
-    // const nextSlideButton = document.querySelector('.slideshow-nav.next');
-
-    // prevSlideButton.addEventListener('click', () => this.handleNavClick("prev"));
-    // nextSlideButton.addEventListener('click', () => this.handleNavClick("next"));
-
-    // prevSlideButton.addEventListener('touchstart', () => this.handleNavClick("prev"));
-    // nextSlideButton.addEventListener('touchstart', () => this.handleNavClick("next"));
-
-    // // Add touch event listener for the close button
-    // const closeSlideButton = document.querySelector('.slideshow-close');
-    // closeSlideButton.addEventListener('click', () => this.handleCloseClick());
-    // closeSlideButton.addEventListener('touchstart', () => this.handleCloseClick());
 
     document.addEventListener("keydown", e => {
       const dir = this.map[e.code];
@@ -167,6 +160,11 @@ class DirectionInput {
       }
     });
 
+    const closePhotoButton = document.querySelector('#photo-carousel .close-button');
+     closePhotoButton.addEventListener('click', () => {
+       this.handleCloseButtonClick();
+     });
+
      // Add a click event listener to the close button globally
      const closeTextButton = document.querySelector('#info-box .close-button');
      closeTextButton.addEventListener('click', () => {
@@ -175,5 +173,4 @@ class DirectionInput {
   }
 }
 
-const directionInput = new DirectionInput();
-directionInput.init();
+// const directionInput = new DirectionInput();

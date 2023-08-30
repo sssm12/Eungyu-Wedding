@@ -5,6 +5,7 @@ class Person extends GameObject {
 
     this.movingProgressRemaining = 0;
     this.isInfoBoxOpen = false; // Add this property
+    this.CarouselOpen= false;
 
     this.isPlayerControlled = config.isPlayerControlled || false;
 
@@ -28,14 +29,13 @@ class Person extends GameObject {
     if (this.movingProgressRemaining > 0) {
       this.updatePosition();
     } else {
-      // More cases for starting to walk will come here
-      // ...
-
-      if (this.x === 12 * 16 && this.y === 9* 16) {
-        this.showPhotoSlideshow();
-      } else {
-        this.hidePhotoSlideshow();
-        
+      if (this.x === 12 * 16 && this.y === 10 * 16 && !this.CarouselOpen) {
+        console.log("you're here");
+        this.showCarousel();
+        this.CarouselOpen = true;
+      } else if (this.x !== 12 * 16 || this.y !== 10 * 16 && this.CarouselOpen) {
+        this.CarouselOpen = false;
+        this.hideCarousel();
       }
 
       if (this.x === 5 * 16 && this.y === 15 * 16 && !this.isInfoBoxOpen) {
@@ -72,20 +72,28 @@ class Person extends GameObject {
 
   } 
 
-  showPhotoSlideshow() {
-    const slideshow = document.getElementById("photo-slideshow");
-    if (slideshow) {
-      slideshow.style.display = "block";
-    }
-  }
-
+  showCarousel() {
+    if (!this.CarouselOpen) {
+      const carousel = document.getElementById('photo-carousel');
+      carousel.style.display = "block";
+      this.CarouselOpen = true;
   
-  hidePhotoSlideshow() {
-    const slideshow = document.getElementById("photo-slideshow");
-    if (slideshow) {
-      slideshow.style.display = "none";
     }
+    // this.closeButton = document.querySelector('#close-button');
+    // console.log("Adding event listener to close button");
+    // this.closeButton.addEventListener('click', () => this.hideCarousel());
   }
+  
+  hideCarousel() {
+    //console.log("Hiding carousel");
+    
+    const carousel = document.getElementById('photo-carousel');
+    carousel.style.display = 'none';
+    //console.log("Hiding carousel", carousel.style.display);
+    this.CarouselOpen = false;
+  }
+  
+
 
   showText(title, text) {
     const infoBox = document.querySelector('#info-box');
@@ -97,7 +105,6 @@ class Person extends GameObject {
     infoText.textContent = text; 
     infoBox.style.display = 'block';
     this.isInfoBoxOpen = true;
-    
   }
   
 
