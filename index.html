@@ -33,33 +33,21 @@
     </div> 
   </div>
 
-  <div id="photo-carousel" class="carousel">
-    <div class="carousel-content">
-      <div class="carousel-slide">
-        <img src="img/wedding-photos/pic1.jpeg" alt="Photo 1">
-      </div>
-      <div class="carousel-slide">
-        <img src="img/wedding-photos/pic2.jpeg" alt="Photo 2">
-      </div>
-      <div class="carousel-slide">
-        <img src="img/wedding-photos/pic3.jpeg" alt="Photo 3">
-      </div>
-      <div class="carousel-slide">
-        <img src="img/wedding-photos/pic4.jpeg" alt="Photo 4">
-      </div>
-      <div class="carousel-slide">
-        <img src="img/wedding-photos/pic5.jpeg" alt="Photo 5">
-      </div>
-      <div class="carousel-slide">
-        <img src="img/wedding-photos/pic6.jpeg" alt="Photo 6">
-      </div>
-      
-      <!-- Repeat for the other photos (photo3.jpg to photo6.jpg) -->
-    </div>
-    <button id="prev-button" class="carousel-button prev-button">&#9664;</button>
-    <button id="next-button" class="carousel-button next-button">&#9654;</button>
-    <button id="close-button" class="carousel-button close-button">&#10006;</button>
+  <div class="slideshow-container" id="slideshow-container">
+    <!-- Add the slideshow images -->
+    <img class="slideshow-image" src="img/wedding-photos/pic1.jpeg" alt="Image 1">
+    <img class="slideshow-image" src="img/wedding-photos/pic1.jpeg" alt="Image 2">
+    <img class="slideshow-image" src="img/wedding-photos/pic3.jpeg" alt="Image 3">
+    <img class="slideshow-image" src="img/wedding-photos/pic4.jpeg" alt="Image 4">
+    <img class="slideshow-image" src="img/wedding-photos/pic5.jpeg" alt="Image 5">
+    <img class="slideshow-image" src="img/wedding-photos/pic6.jpeg" alt="Image 6">
+    <!-- Add more images as needed -->
+  
+    <!-- Add the slideshow navigation buttons -->
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
   </div>
+  <span class="close-button" onclick="closeSlideshow()">&times;</span>
   
 
 

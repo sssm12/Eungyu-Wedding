@@ -125,120 +125,46 @@ body {
   margin-right: 3%;
 }
 
-/* Add styles for the photo slideshow */
-/* Add styles for the photo slideshow */
-.photo-slideshow {
-  position: absolute;
-  top: 192px; /* Correct calculation: 12 * 16px */
-  left: 0px; /* Correct calculation: 10 * 16px */
-  display: none;
-  z-index: 10; /* Ensure the slideshow appears on top */
+/* Add styles for slideshow container and buttons */
+.slideshow-container {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+  display: none; /* Hide by default */
 }
 
 .slideshow-image {
-  max-width: 100%;
-  height: auto;
   display: none;
+  width: 100%;
+  height: auto;
 }
 
-.slideshow-image.active {
-  display: block;
-}
-
-/* New styles for navigation arrows and close button */
-.slideshow-nav,
-.slideshow-close {
+.prev, .next {
+  cursor: pointer;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 24px;
-  color: black;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.slideshow-nav.prev {
-  left: 10px;
-}
-
-.slideshow-nav.next {
-  right: 10px;
-}
-
-.slideshow-close {
-  top: 15px;
-  right: 10px;
-  font-size: 46px;
-  background-color: transparent;
-  color: black;
-  border: none;
-  cursor: pointer;
-}
-
-/* Update carousel styles */
-.carousel {
-  position: fixed; /* Use 'fixed' instead of 'absolute' to ensure the carousel is fixed on the screen */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Adjust the z-index to make sure the carousel is on top */
-}
-
-/* Update carousel content styles */
-.carousel-content {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* Adjust the alignment to show one image at a time */
-  flex-wrap: nowrap;
-  overflow: hidden;
-  width: 100%;
-  height: 100%; /*Adjust the height to show the full image  */
-}
-
-.carousel-slide {
-  flex: 0 0 100%;
-  transition: transform 0.5s ease-in-out;
-  display: flex; /* Add display:flex to ensure image is centered horizontally */
-  justify-content: center;
-  align-items: center;
-} 
-
-
-.carousel-slide img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-
-/* Adjust button positioning */
-.carousel-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 24px;
-  border: none;
-  background-color: transparent;
+  padding: 10px;
+  font-size: 18px;
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  cursor: pointer;
 }
 
-.prev-button {
-  left: 10px;
+.prev {
+  left: 0;
 }
 
-.next-button {
-  right: 10px;
+.next {
+  right: 0;
 }
 
 .close-button {
+  cursor: pointer;
+  position: absolute;
   top: 10px;
-  right: 10px;
+  right: 15px;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
 }
