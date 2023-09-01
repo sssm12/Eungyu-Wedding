@@ -74,23 +74,25 @@ class Person extends GameObject {
 
   showCarousel() {
     if (!this.CarouselOpen) {
-      const carousel = document.getElementById('slideshow-container');
       //const carousel = document.getElementById('photo-carousel');
-     // const carousel =  document.querySelector('slideshow-container');
-      carousel.style.display = "block";
+      // const carousel =  document.querySelector('carousel-container');
+      // carousel.style.display = "block";
+      
+      const carouselContainer = document.querySelector(".carousel-container");
+      carouselContainer.style.display = "block";
       this.CarouselOpen = true;
   
     }
   }
   
   hideCarousel() {
-    //console.log("Hiding carousel");
-    const carousel =  document.querySelector('slideshow-container');
+    // //console.log("Hiding carousel");
+    // const carousel =  document.querySelector('carousel-container');
     
-    // const carousel = document.getElementById('photo-carousel');
-    carousel.style.display = 'none';
-    //console.log("Hiding carousel", carousel.style.display);
-    this.CarouselOpen = false;
+    // // const carousel = document.getElementById('photo-carousel');
+    // carousel.style.display = 'none';
+    // //console.log("Hiding carousel", carousel.style.display);
+    // this.CarouselOpen = false;
   }
   
 
