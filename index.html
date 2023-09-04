@@ -22,7 +22,7 @@
   <!-- Add text and exit button at the bottom -->
   <div class="info-box" id="info-box">
     <!-- Add the exit button/icon -->
-    <div class="info-header">
+   <div class="info-header"> 
       <div class="title">안녕하세요!</div>
       <button class = "close-button">&times;</button>
     </div>
@@ -33,21 +33,12 @@
     </div> 
   </div>
 
-
-    <!-- Add the photo slideshow container -->
-  <div class="photo-slideshow" id="photo-slideshow">
-    <button class="slideshow-nav prev" id="prev-slide">&lt;</button>
-    <img src="img/wedding-photos/pic1.jpeg" class="slideshow-image active">
-    <img src="img/wedding-photos/pic2.jpeg" class="slideshow-image">
-    <img src="img/wedding-photos/pic3.jpeg" class="slideshow-image">
-    <img src="img/wedding-photos/pic4.jpeg" class="slideshow-image">
-    <img src="img/wedding-photos/pic5.jpeg" class="slideshow-image">
-    <img src="img/wedding-photos/pic6.jpeg" class="slideshow-image">
-    <button class="slideshow-nav next" id="next-slide">&gt;</button>
-    <button class="slideshow-close" id="close-slide">&times;</button>
-
+  <div class="carousel-container">
+    <span class="close-btn">&times;</span>
+    <button class="prev-btn">&#10094;</button>
+    <button class="next-btn">&#10095;</button>
+    <canvas class="carousel-canvas" id="carousel-canvas" width="980" height="1650"></canvas>
   </div>
-
 
 
   <!-- Scripts -->

@@ -125,53 +125,54 @@ body {
   margin-right: 3%;
 }
 
-/* Add styles for the photo slideshow */
-/* Add styles for the photo slideshow */
-.photo-slideshow {
-  position: absolute;
-  top: 192px; /* Correct calculation: 12 * 16px */
-  left: 0px; /* Correct calculation: 10 * 16px */
+
+.carousel-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);/* Remove background color */
   display: none;
-  z-index: 10; /* Ensure the slideshow appears on top */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  border: none; /* Remove borders */
 }
 
-.slideshow-image {
-  max-width: 100%;
-  height: auto;
-  display: none;
-}
-
-.slideshow-image.active {
-  display: block;
-}
-
-/* New styles for navigation arrows and close button */
-.slideshow-nav,
-.slideshow-close {
+.close-btn {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 24px;
-  color: black;
-  background-color: transparent;
-  border: none;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  color: white;
   cursor: pointer;
 }
 
-.slideshow-nav.prev {
+.prev-btn, .next-btn {
+  position: absolute;
+  top: 50%;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  z-index: 1;
+  background: none; /* Remove the background color */
+  border: none; /* Remove the border */
+}
+
+
+.prev-btn {
   left: 10px;
 }
 
-.slideshow-nav.next {
+.next-btn {
   right: 10px;
 }
 
-.slideshow-close {
-  top: 15px;
-  right: 10px;
-  font-size: 46px;
-  background-color: transparent;
-  color: black;
-  border: none;
-  cursor: pointer;
+.game-canvas {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: 0 auto;
 }
