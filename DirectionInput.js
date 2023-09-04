@@ -168,6 +168,9 @@ class DirectionInput {
      closeTextButton.addEventListener('click', () => {
        this.handlecloseTextButtonClick();
      });
+     closeTextButton.addEventListener('touchen', () => {
+      this.handlecloseTextButtonClick();
+    });
   }
 }
 
