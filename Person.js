@@ -38,7 +38,7 @@ class Person extends GameObject {
       }
 
       if (this.x === 5 * 16 && this.y === 15 * 16 && !this.isInfoBoxOpen) {
-        this.showText("장소 안내", "결혼식은 신라호텔에서 진행합니다.");
+        this.showText("장소 안내", "결혼식은 신라호텔에서 진행합니다.\n 주소 : 전남 광양시 광양읍 동주2길 104-6");
         this.isInfoBoxOpen = true;
       }
       
@@ -47,6 +47,16 @@ class Person extends GameObject {
         this.isInfoBoxOpen = false;
       }
 
+
+      if (this.x === 18 * 16 && this.y === 17 * 16 && !this.isInfoBoxOpen) {
+        this.showText("경혼식 날짜", "10월 14일\n 오후 3시~5시");
+        this.isInfoBoxOpen = true;
+      }
+
+      // Check if the character has moved away from the position, then allow reopening the info box
+      if ((this.x !== 17 * 16 || this.y !== 17 * 16) && this.isInfoBoxOpen) {
+        this.isInfoBoxOpen = false;
+      }
 
       // Case: We're keyboard ready and have an arrow pressed
       if (this.isPlayerControlled && state.arrow) {
@@ -88,11 +98,13 @@ class Person extends GameObject {
   showText(title, text) {
     const infoBox = document.querySelector('#info-box');
     const infoTitle = infoBox.querySelector('.title');
+    
     const infoText = infoBox.querySelector('.info-text');
   
     // Display the info-box with the provided title and text
     infoTitle.textContent = title;
-    infoText.textContent = text; 
+    infoText.innerHTML = text.replace(/\n/g, '<br>'); // Use innerHTML to interpret HTML tags // Replace '\n' with '<br>' for line breaks
+    //infoText.textContent = text; 
     infoBox.style.display = 'block';
     this.isInfoBoxOpen = true;
   }
