@@ -5,6 +5,7 @@ class Person extends GameObject {
 
     this.movingProgressRemaining = 0;
     this.isInfoBoxOpen = false; // Add this property
+    this.isInfoBox2Open = false; 
     this.CarouselOpen= false;
 
     this.isPlayerControlled = config.isPlayerControlled || false;
@@ -48,15 +49,21 @@ class Person extends GameObject {
       }
 
 
-      if (this.x === 18 * 16 && this.y === 17 * 16 && !this.isInfoBoxOpen) {
-        this.showText("경혼식 날짜", "10월 14일\n 오후 3시~5시");
-        this.isInfoBoxOpen = true;
+      if (this.x === 18 * 16 && this.y === 17 * 16 && !this.isInfoBox2Open) {
+        this.showText2("경혼식 날짜", "10월 14일\n 오후 3시~5시");
+        this.isInfoBox2Open = true;
       }
 
       // Check if the character has moved away from the position, then allow reopening the info box
-      if ((this.x !== 17 * 16 || this.y !== 17 * 16) && this.isInfoBoxOpen) {
-        this.isInfoBoxOpen = false;
+      if ((this.x !== 18 * 16 || this.y !== 17 * 16) && this.isInfoBox2Open) {
+        this.isInfoBox2Open = false;
       }
+
+
+      // // Check if the character has moved away from the position, then allow reopening the info box
+      // if ((this.x !== 17 * 16 || this.y !== 17 * 16) && this.isInfoBoxOpen) {
+      //   this.isInfoBoxOpen = false;
+      // }
 
       // Case: We're keyboard ready and have an arrow pressed
       if (this.isPlayerControlled && state.arrow) {
@@ -98,7 +105,6 @@ class Person extends GameObject {
   showText(title, text) {
     const infoBox = document.querySelector('#info-box');
     const infoTitle = infoBox.querySelector('.title');
-    
     const infoText = infoBox.querySelector('.info-text');
   
     // Display the info-box with the provided title and text
@@ -108,6 +114,20 @@ class Person extends GameObject {
     infoBox.style.display = 'block';
     this.isInfoBoxOpen = true;
   }
+
+  showText2(title, text) {
+    const infoBox = document.querySelector('#info-box');
+    const infoTitle = infoBox.querySelector('.title');
+    const infoText = infoBox.querySelector('.info-text');
+  
+    // Display the info-box with the provided title and text
+    infoTitle.textContent = title;
+    infoText.innerHTML = text.replace(/\n/g, '<br>'); // Use innerHTML to interpret HTML tags // Replace '\n' with '<br>' for line breaks
+    //infoText.textContent = text; 
+    infoBox.style.display = 'block';
+    this.isInfoBox2Open = true;
+  }
+  
   
 
   startBehavior(state, behavior) {

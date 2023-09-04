@@ -134,14 +134,14 @@ class DirectionInput {
   }
 
   handlecloseTextButtonClick() {
+    console.log("Close button clicked");
     // Hide the entire info-box when the close button is clicked
-    const infoBox = document.querySelector('#info-box');
+    const infoBox = document.querySelector('.info-box');
     infoBox.style.display = 'none';
   }
 
   handleCloseButtonClick() {
     console.log("Close button clicked");
-
     const carouselContainer = document.querySelector(".carousel-container");
     carouselContainer.style.display = "none";
   
