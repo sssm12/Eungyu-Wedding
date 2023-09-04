@@ -30,7 +30,6 @@ class Person extends GameObject {
       this.updatePosition();
     } else {
       if (this.x === 12 * 16 && this.y === 10 * 16 && !this.CarouselOpen) {
-        console.log("you're here");
         this.showCarousel();
         this.CarouselOpen = true;
       } else if (this.x !== 12 * 16 || this.y !== 10 * 16 && this.CarouselOpen) {
@@ -74,10 +73,6 @@ class Person extends GameObject {
 
   showCarousel() {
     if (!this.CarouselOpen) {
-      //const carousel = document.getElementById('photo-carousel');
-      // const carousel =  document.querySelector('carousel-container');
-      // carousel.style.display = "block";
-      
       const carouselContainer = document.querySelector(".carousel-container");
       carouselContainer.style.display = "block";
       this.CarouselOpen = true;
@@ -86,13 +81,6 @@ class Person extends GameObject {
   }
   
   hideCarousel() {
-    // //console.log("Hiding carousel");
-    // const carousel =  document.querySelector('carousel-container');
-    
-    // // const carousel = document.getElementById('photo-carousel');
-    // carousel.style.display = 'none';
-    // //console.log("Hiding carousel", carousel.style.display);
-    // this.CarouselOpen = false;
   }
   
 
