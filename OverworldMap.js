@@ -34,7 +34,7 @@ class OverworldMap {
       
 window.OverworldMaps = {
 Room1: {
-    lowerSrc: "img/background/new_map.png",
+    lowerSrc: "img/background/background_map.png",
     upperSrc: "img/background/room1_upper.png",
     gameObjects: {
     hero: new Person({
@@ -152,6 +152,8 @@ Room1: {
       //Rock near Farm
       [utils.asGridCoords(2, 22)] : true, 
       [utils.asGridCoords(2, 23)] : true, 
+
+      [utils.asGridCoords(19, 17)] : true, 
 
       //Farm gate (up)
       [utils.asGridCoords(4, 18)] : true, 

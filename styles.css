@@ -149,6 +149,7 @@ body {
   font-size: 70px;
   color: ORANGE;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .prev-btn, .next-btn {

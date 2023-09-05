@@ -30,16 +30,16 @@ class Person extends GameObject {
     if (this.movingProgressRemaining > 0) {
       this.updatePosition();
     } else {
-      if (this.x === 12 * 16 && this.y === 10 * 16 && !this.CarouselOpen) {
+      if (this.x === 12 * 16 && this.y === 9 * 16 && !this.CarouselOpen) {
         this.showCarousel();
         this.CarouselOpen = true;
-      } else if (this.x !== 12 * 16 || this.y !== 10 * 16 && this.CarouselOpen) {
+      } else if (this.x !== 12 * 16 || this.y !== 9 * 16 && this.CarouselOpen) {
         this.CarouselOpen = false;
         this.hideCarousel();
       }
 
       if (this.x === 5 * 16 && this.y === 15 * 16 && !this.isInfoBoxOpen) {
-        this.showText("장소 안내", "결혼식은 신라호텔에서 진행합니다.\n 주소 : 전남 광양시 광양읍 동주2길 104-6");
+        this.showText("장소 안내", "결혼식은 은규의 아버지의 하우스에서 진행합니다.\n 주소 : 전남 광양시 광양읍 동주2길 104-6");
         this.isInfoBoxOpen = true;
       }
       
