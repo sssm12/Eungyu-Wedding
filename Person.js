@@ -50,7 +50,7 @@ class Person extends GameObject {
 
 
       if (this.x === 18 * 16 && this.y === 17 * 16 && !this.isInfoBox2Open) {
-        this.showText2("경혼식 날짜", "10월 14일\n 오후 3시~5시");
+        this.showText2("날짜 안내", "일시: 2023년 10월 14일 토요일\n 시간: 오후 3시 ~ 5시");
         this.isInfoBox2Open = true;
       }
 

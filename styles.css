@@ -84,8 +84,8 @@ body {
 .info-box {
   position: relative; /* Add this for positioning the exit button */
   width: 100%;
-  bottom: -550px;
-  height: 370px; 
+  bottom: -560px;
+  height: 390px; 
   padding: 10px;
   background-color: white;
   border: 1px solid #ccc;
@@ -100,11 +100,11 @@ body {
   margin-left: 3%; /* Adjust the margins (top and bottom, left and right) */
   margin-right: 3%;
   margin-top: 10px;
-  margin-bottom: 0px;
+  margin-bottom: 5px;
 }
 
 .info-header .title {
-  font-size: 25px;
+  font-size: 32px;
   
 }
 
@@ -113,16 +113,17 @@ body {
   border: none; 
   outline: none;
   background: none;
-  font-size: 2.5em; 
+  font-size: 3.5em; 
   font-weight: bold;
 
 }
 
 .info-text {
-  font-size: 25px; /* Adjust the text size */
+  font-size: 32px; /* Adjust the text size */
   margin-bottom: 5px; /* Adjust the margin between paragraphs */
   margin-left: 3%; /* Adjust the margins (top and bottom, left and right) */
   margin-right: 3%;
+  line-height: 2;
 }
 
 
@@ -145,16 +146,16 @@ body {
   position: absolute;
   top: 10px;
   right: 20px;
-  font-size: 30px;
-  color: white;
+  font-size: 70px;
+  color: ORANGE;
   cursor: pointer;
 }
 
 .prev-btn, .next-btn {
   position: absolute;
-  top: 50%;
-  font-size: 30px;
-  color: white;
+  top: 40%;
+  font-size: 70px;
+  color: orange;
   cursor: pointer;
   z-index: 1;
   background: none; /* Remove the background color */
